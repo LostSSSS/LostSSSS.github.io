@@ -438,7 +438,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
         <a class="btn ghost magnetic" href="https://github.com/LostSSSS" target="_blank" rel="noopener">↗ github.com/LostSSSS</a>
       </div>
       <div class="stat-row">
-        <div class="stat"><span class="n" data-count="5">0</span><span class="l">shipped projects</span></div>
+        <div class="stat"><span class="n" data-count="6">0</span><span class="l">shipped projects</span></div>
         <div class="stat"><span class="n">CCNAv7</span><span class="l">cisco certified</span></div>
         <div class="stat"><span class="n" data-count="3" data-suffix="+">0</span><span class="l">languages</span></div>
         <div class="stat"><span class="n" data-count="2023" data-from="1990">1990</span><span class="l">bsc · in progress</span></div>
@@ -538,7 +538,20 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
 
       <article class="proj reveal">
         <div class="proj-top">
-          <span class="proj-tag sec">security · flagship</span>
+          <span class="proj-tag sec">security · flagship · final-year project</span>
+          <span class="proj-lang"><span class="sw" style="background:#3572A5"></span>Python</span>
+        </div>
+        <div class="proj-body">
+          <h3>NIDS with Explainable AI</h3>
+          <p>My Final Year Project: a machine-learning Network Intrusion Detection System that classifies network flows as benign or malicious with a Random Forest, then explains every decision in plain English using SHAP and LIME. A second model names the attack type — port scan, DoS, brute force — and a React + FastAPI dashboard streams live alerts and their explanations over WebSockets.</p>
+          <div class="proj-stack"><span>scikit-learn</span><span>SHAP</span><span>LIME</span><span>FastAPI</span><span>React</span><span>CIC-IDS2017/2018</span></div>
+          <div class="proj-links"><a href="https://github.com/LostSSSS/FYP" target="_blank" rel="noopener">source ↗</a></div>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-top">
+          <span class="proj-tag sec">security · networking</span>
           <span class="proj-lang"><span class="sw" style="background:#3572A5"></span>Python</span>
         </div>
         <div class="proj-body">
@@ -981,11 +994,12 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
       addLine("embedded: arduino, sensors, microcontrollers", "term-out");
     },
     projects: function () {
-      addLine('[1] port-scanner — multithreaded TCP scanner + banner grabbing  <a href="https://github.com/LostSSSS/Port-Scanner" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[2] facial-recognition — opencv + dlib + svm pipeline  <a href="https://github.com/LostSSSS/Facial_recognition_project" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[3] supermarket-sim — java queue simulation  <a href="https://github.com/LostSSSS/SupermarketSimulation" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[4] crossword — java CLI puzzle game  <a href="https://github.com/LostSSSS/CrosswordPuzzle" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[5] login-system — php + mysql auth  <a href="https://github.com/LostSSSS/Login-page-with-a-portfolio" target="_blank" rel="noopener">src</a>', "term-out", true);
+      addLine('[1] nids-xai — ML intrusion detection + SHAP/LIME explanations (FYP)  <a href="https://github.com/LostSSSS/FYP" target="_blank" rel="noopener">src</a>', "term-out", true);
+      addLine('[2] port-scanner — multithreaded TCP scanner + banner grabbing  <a href="https://github.com/LostSSSS/Port-Scanner" target="_blank" rel="noopener">src</a>', "term-out", true);
+      addLine('[3] facial-recognition — opencv + dlib + svm pipeline  <a href="https://github.com/LostSSSS/Facial_recognition_project" target="_blank" rel="noopener">src</a>', "term-out", true);
+      addLine('[4] supermarket-sim — java queue simulation  <a href="https://github.com/LostSSSS/SupermarketSimulation" target="_blank" rel="noopener">src</a>', "term-out", true);
+      addLine('[5] crossword — java CLI puzzle game  <a href="https://github.com/LostSSSS/CrosswordPuzzle" target="_blank" rel="noopener">src</a>', "term-out", true);
+      addLine('[6] login-system — php + mysql auth  <a href="https://github.com/LostSSSS/Login-page-with-a-portfolio" target="_blank" rel="noopener">src</a>', "term-out", true);
     },
     certs: function () {
       addLine("✓ CCNAv7: Introduction to Networks — Cisco (2024)", "ok");
