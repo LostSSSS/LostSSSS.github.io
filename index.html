@@ -3,391 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Shayaam Shaheem — Cybersecurity &amp; Networking</title>
-<meta name="description" content="Portfolio of Shayaam Shaheem — aspiring cybersecurity and networking specialist, Computer Science student at Maldives National University. CCNA-certified. Python, Java, and security tooling." />
+<title>Shayaam Shaheem - Cybersecurity &amp; Networking</title>
+<meta name="description" content="Portfolio of Shayaam Shaheem - cybersecurity and networking specialist, Computer Science graduate of Maldives National University. CCNA-certified. Python, Java, and security tooling." />
 <meta name="author" content="Shayaam Shaheem" />
-<meta property="og:title" content="Shayaam Shaheem — Cybersecurity &amp; Networking" />
-<meta property="og:description" content="Aspiring cybersecurity & networking specialist. CCNA-certified CS student building security tools in Python & Java." />
+<meta property="og:title" content="Shayaam Shaheem - Cybersecurity &amp; Networking" />
+<meta property="og:description" content="Cybersecurity & networking specialist. CCNA-certified CS graduate building security tools in Python & Java." />
 <meta property="og:type" content="website" />
-<style>
-/* ============================================================
-   TOKENS — dark (default): a terminal screen.
-   Light: a cool blueprint / security-report paper.
-   ============================================================ */
-:root {
-  --bg:            #080b11;
-  --bg-grid:       rgba(67, 224, 196, 0.05);
-  --surface:       #0f1620;
-  --surface-2:     #131c28;
-  --surface-line:  #1f2b3a;
-  --line:          #223042;
-  --ink:           #e7eef6;
-  --ink-soft:      #9fb0c3;
-  --ink-faint:     #64788e;
-  --accent:        #43e0c4;
-  --accent-dim:    #2aa892;
-  --accent-glow:   rgba(67, 224, 196, 0.16);
-  --amber:         #f5b451;
-  --danger:        #ff6b6b;
-  --sel:           rgba(67, 224, 196, 0.28);
-  --shadow:        0 18px 50px -24px rgba(0,0,0,0.85);
-  --mono: ui-monospace, "JetBrains Mono", "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
-  --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --maxw: 1080px;
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg:            #eef2f5;
-    --bg-grid:       rgba(20, 70, 90, 0.05);
-    --surface:       #ffffff;
-    --surface-2:     #f4f7f9;
-    --surface-line:  #dbe3e9;
-    --line:          #d3dde4;
-    --ink:           #142430;
-    --ink-soft:      #445565;
-    --ink-faint:     #748898;
-    --accent:        #0c8f78;
-    --accent-dim:    #0a7563;
-    --accent-glow:   rgba(12, 143, 120, 0.12);
-    --amber:         #b9781a;
-    --danger:        #c23b3b;
-    --sel:           rgba(12, 143, 120, 0.18);
-    --shadow:        0 16px 40px -24px rgba(20,40,55,0.30);
-  }
-}
-:root[data-theme="dark"] {
-  --bg:#080b11; --bg-grid:rgba(67,224,196,0.05); --surface:#0f1620; --surface-2:#131c28;
-  --surface-line:#1f2b3a; --line:#223042; --ink:#e7eef6; --ink-soft:#9fb0c3; --ink-faint:#64788e;
-  --accent:#43e0c4; --accent-dim:#2aa892; --accent-glow:rgba(67,224,196,0.16); --amber:#f5b451;
-  --danger:#ff6b6b; --sel:rgba(67,224,196,0.28); --shadow:0 18px 50px -24px rgba(0,0,0,0.85);
-}
-:root[data-theme="light"] {
-  --bg:#eef2f5; --bg-grid:rgba(20,70,90,0.05); --surface:#ffffff; --surface-2:#f4f7f9;
-  --surface-line:#dbe3e9; --line:#d3dde4; --ink:#142430; --ink-soft:#445565; --ink-faint:#748898;
-  --accent:#0c8f78; --accent-dim:#0a7563; --accent-glow:rgba(12,143,120,0.12); --amber:#b9781a;
-  --danger:#c23b3b; --sel:rgba(12,143,120,0.18); --shadow:0 16px 40px -24px rgba(20,40,55,0.30);
-}
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--sans);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-  transition: background .35s ease, color .35s ease;
-}
-::selection { background: var(--sel); color: var(--ink); }
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; }
-
-#bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-.grid-overlay {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image:
-    linear-gradient(var(--bg-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
-  background-size: 46px 46px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
-}
-#cursor-glow {
-  position: fixed; z-index: 0; pointer-events: none;
-  width: 520px; height: 520px; border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
-  transform: translate(-50%, -50%);
-  opacity: 0; transition: opacity .5s ease;
-}
-.wrap { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-
-/* ---------- scroll progress ---------- */
-#progress {
-  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
-  background: linear-gradient(90deg, var(--accent-dim), var(--accent));
-  z-index: 60; box-shadow: 0 0 10px var(--accent-glow);
-}
-
-/* ---------- eyebrow / labels ---------- */
-.eyebrow {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--accent); opacity: 0.6; }
-
-/* ============================================================ NAV */
-header.nav {
-  position: sticky; top: 0; z-index: 50;
-  backdrop-filter: blur(12px);
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
-  border-bottom: 1px solid var(--line);
-}
-.nav-inner {
-  max-width: var(--maxw); margin: 0 auto; padding: 12px 24px;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-}
-.brand { font-family: var(--mono); font-weight: 700; font-size: 0.92rem; letter-spacing: 0.02em; display:flex; align-items:center; gap:10px; white-space: nowrap; }
-.brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2.4s ease-in-out infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.45;transform:scale(.8);} }
-@media (prefers-reduced-motion: reduce){ .brand .dot{ animation:none; } }
-.brand .muted { color: var(--ink-faint); }
-.nav-links { display: flex; gap: 4px; align-items: center; font-family: var(--mono); font-size: 0.8rem; }
-.nav-links a {
-  color: var(--ink-soft); padding: 7px 12px; border-radius: 7px;
-  transition: color .18s, background .18s; position: relative;
-}
-.nav-links a:hover { color: var(--ink); background: var(--surface-2); }
-.nav-links a.active { color: var(--accent); }
-.nav-links a.active::after {
-  content: ""; position: absolute; left: 12px; right: 12px; bottom: 3px; height: 1px; background: var(--accent);
-}
-.nav-right { display: flex; align-items: center; gap: 8px; }
-.theme-btn, .nav-burger {
-  font-family: var(--mono); font-size: 0.75rem; color: var(--ink-soft);
-  background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
-  padding: 7px 11px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
-  transition: border-color .18s, color .18s;
-}
-.theme-btn:hover, .nav-burger:hover { color: var(--ink); border-color: var(--accent-dim); }
-.nav-burger { display: none; font-size: 1rem; line-height: 1; padding: 6px 10px; }
-@media (max-width: 800px) {
-  .nav-links {
-    display: none;
-    position: absolute; top: 100%; left: 0; right: 0;
-    flex-direction: column; align-items: stretch; gap: 2px;
-    background: color-mix(in srgb, var(--bg) 92%, transparent);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--line);
-    padding: 10px 16px 14px;
-  }
-  .nav-links a { padding: 12px 14px; font-size: 0.9rem; }
-  .nav-links a.active::after { display: none; }
-  .nav-links.open { display: flex; animation: slideDown .22s ease both; }
-  @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce){ .nav-links.open { animation: none; } }
-  .nav-burger { display: inline-flex; }
-}
-
-/* ============================================================ HERO */
-.hero { padding: clamp(40px, 8vw, 76px) 0 40px; }
-.term {
-  border: 1px solid var(--surface-line); border-radius: 14px; overflow: hidden;
-  background: var(--surface); box-shadow: var(--shadow);
-}
-.term-bar {
-  display: flex; align-items: center; gap: 8px; padding: 12px 16px;
-  border-bottom: 1px solid var(--surface-line); background: var(--surface-2);
-}
-.term-bar .tb { width: 12px; height: 12px; border-radius: 50%; background: var(--line); flex: none; }
-.term-bar .tb.r { background: #ff5f57; } .term-bar .tb.y { background: #febc2e; } .term-bar .tb.g { background: #28c840; }
-.term-bar .path { margin-left: 10px; font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.term-bar .hint { margin-left: auto; font-family: var(--mono); font-size: 0.68rem; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; white-space: nowrap; }
-.term-body {
-  padding: 22px 20px 24px; font-family: var(--mono);
-  font-size: clamp(0.72rem, 2.4vw, 0.9rem);
-  min-height: 240px; cursor: text;
-}
-.term-body .line { margin: 0 0 6px; color: var(--ink-soft); white-space: pre-wrap; word-break: break-word; }
-.term-body .prompt { color: var(--accent); }
-.term-body .flag { color: var(--amber); }
-.term-body .err { color: var(--danger); }
-.term-body .ok { color: var(--accent); }
-.term-out { color: var(--ink); }
-.term-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-.term-input-line { display: flex; align-items: baseline; gap: 8px; }
-.term-input-line .ps1 { color: var(--accent); flex: none; }
-#term-input {
-  flex: 1; min-width: 40px; background: transparent; border: 0; outline: none;
-  color: var(--ink); font: inherit; caret-color: var(--accent); padding: 0;
-}
-
-.hero-id { margin-top: 30px; }
-.hero-id h1 {
-  font-size: clamp(2.4rem, 9vw, 5rem); line-height: 1.02; margin: 0;
-  letter-spacing: -0.03em; font-weight: 800; text-wrap: balance;
-}
-.hero-id h1 .accent { color: var(--accent); }
-.glitch { position: relative; display: inline-block; }
-@media (hover:hover) and (prefers-reduced-motion: no-preference) {
-  .glitch:hover { animation: glitch .34s steps(2) 2; }
-  @keyframes glitch {
-    0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--danger); transform: translateX(0); }
-    25% { text-shadow: -3px 0 var(--accent), 3px 0 var(--danger); transform: translateX(1px); }
-    50% { text-shadow: 2px 0 var(--danger), -2px 0 var(--accent); transform: translateX(-1px); }
-    100% { text-shadow: none; transform: none; }
-  }
-}
-.hero-role {
-  font-family: var(--mono); font-size: clamp(0.9rem, 3vw, 1.15rem);
-  color: var(--ink-soft); letter-spacing: 0.01em; margin-top: 8px; min-height: 1.6em;
-}
-.hero-role .cursor { display:inline-block; width:9px; height:1.1em; background:var(--accent); vertical-align:-2px; margin-left:2px; animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce){ .hero-role .cursor{ animation:none; } }
-.hero-blurb { max-width: 60ch; color: var(--ink-soft); margin: 18px 0 0; font-size: 1.02rem; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-.btn {
-  font-family: var(--mono); font-size: 0.85rem; padding: 12px 18px; border-radius: 9px;
-  border: 1px solid var(--line); cursor: pointer;
-  transition: box-shadow .18s, border-color .18s, color .18s, transform .12s ease-out;
-  display: inline-flex; align-items: center; gap: 9px; will-change: transform;
-}
-.btn.primary { background: var(--accent); color: #04120f; border-color: var(--accent); font-weight: 600; }
-.btn.primary:hover { box-shadow: 0 0 0 4px var(--accent-glow), 0 8px 24px -8px var(--accent-glow); }
-.btn.ghost { background: transparent; color: var(--ink); }
-.btn.ghost:hover { border-color: var(--accent-dim); color: var(--accent); }
-
-.stat-row { display: flex; flex-wrap: wrap; gap: 24px 36px; margin-top: 40px; padding-top: 26px; border-top: 1px dashed var(--line); }
-.stat { display: flex; flex-direction: column; gap: 2px; }
-.stat .n { font-family: var(--mono); font-size: 1.6rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
-.stat .l { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); }
-
-/* ============================================================ SECTIONS */
-section.block { padding: clamp(48px, 9vw, 72px) 0; }
-.sec-head { margin-bottom: clamp(26px, 5vw, 40px); }
-.sec-head h2 {
-  font-size: clamp(1.6rem, 5vw, 2.5rem); margin: 12px 0 0; letter-spacing: -0.02em;
-  font-weight: 800; text-wrap: balance;
-}
-.sec-head p { color: var(--ink-soft); max-width: 62ch; margin: 12px 0 0; }
-
-/* ---------- About ---------- */
-.about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start; }
-@media (max-width: 820px){ .about-grid { grid-template-columns: 1fr; gap: 28px; } }
-.about-grid p { color: var(--ink-soft); margin: 0 0 16px; }
-.about-grid p strong { color: var(--ink); font-weight: 600; }
-.id-card {
-  border: 1px solid var(--surface-line); border-radius: 12px; background: var(--surface);
-  padding: 4px; box-shadow: var(--shadow);
-}
-.id-card .id-head { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); padding: 14px 16px 10px; border-bottom: 1px solid var(--surface-line); }
-.id-rows { padding: 6px 4px; }
-.id-row { display: flex; justify-content: space-between; gap: 16px; padding: 11px 14px; font-family: var(--mono); font-size: 0.82rem; border-bottom: 1px solid var(--surface-2); }
-.id-row:last-child { border-bottom: 0; }
-.id-row .k { color: var(--ink-faint); }
-.id-row .v { color: var(--ink); text-align: right; }
-.id-row .v .live { color: var(--accent); }
-
-/* ---------- Capabilities ---------- */
-.cap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-@media (max-width: 760px){ .cap-grid { grid-template-columns: 1fr; } }
-.cap {
-  border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
-  padding: 22px; transition: border-color .2s, transform .2s, box-shadow .2s;
-}
-.cap:hover { border-color: var(--accent-dim); transform: translateY(-3px); box-shadow: var(--shadow); }
-.cap h3 { margin: 0 0 4px; font-size: 1.02rem; display: flex; align-items: center; gap: 10px; }
-.cap h3 .idx { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); }
-.cap .desc { color: var(--ink-faint); font-size: 0.85rem; margin: 0 0 16px; font-family: var(--mono); }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip {
-  font-family: var(--mono); font-size: 0.76rem; padding: 5px 10px; border-radius: 6px;
-  background: var(--surface-2); border: 1px solid var(--line); color: var(--ink-soft);
-  transition: border-color .18s, color .18s, transform .18s;
-}
-.chip:hover { border-color: var(--accent-dim); color: var(--ink); transform: translateY(-1px); }
-.chip.hi { color: var(--accent); border-color: var(--accent-dim); }
-
-/* ---------- Projects ---------- */
-.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; perspective: 1200px; }
-@media (max-width: 820px){ .proj-grid { grid-template-columns: 1fr; } }
-.proj {
-  border: 1px solid var(--surface-line); border-radius: 13px; background: var(--surface);
-  overflow: hidden; display: flex; flex-direction: column;
-  transition: border-color .2s, box-shadow .2s, transform .15s ease-out;
-  position: relative; will-change: transform; transform-style: preserve-3d;
-}
-.proj::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
-  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), var(--accent-glow), transparent 45%);
-  transition: opacity .25s;
-}
-.proj:hover { border-color: var(--accent-dim); box-shadow: var(--shadow); }
-.proj:hover::after { opacity: 1; }
-.proj-top { padding: 20px 22px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.proj-tag { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 9px; border-radius: 6px; border: 1px solid var(--line); color: var(--ink-faint); }
-.proj-tag.sec { color: var(--accent); border-color: var(--accent-dim); }
-.proj-lang { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-faint); display: flex; align-items: center; gap: 7px; }
-.proj-lang .sw { width: 9px; height: 9px; border-radius: 2px; }
-.proj-body { padding: 14px 22px 22px; display: flex; flex-direction: column; flex: 1; }
-.proj-body h3 { margin: 0 0 8px; font-size: 1.18rem; letter-spacing: -0.01em; }
-.proj-body p { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 16px; flex: 1; }
-.proj-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
-.proj-stack span { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-faint); background: var(--surface-2); border: 1px solid var(--line); padding: 3px 8px; border-radius: 5px; }
-.proj-links { display: flex; gap: 16px; font-family: var(--mono); font-size: 0.8rem; }
-.proj-links a { color: var(--accent); display: inline-flex; align-items: center; gap: 6px; transition: gap .18s; }
-.proj-links a:hover { gap: 10px; }
-
-/* ---------- Certifications ---------- */
-.cert-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
-.cert {
-  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px;
-  border: 1px solid var(--line); border-radius: 11px; background: var(--surface); padding: 18px 22px;
-  transition: border-color .2s, transform .2s;
-}
-.cert:hover { border-color: var(--accent-dim); transform: translateX(4px); }
-.cert .seal { width: 40px; height: 40px; border-radius: 9px; border: 1px solid var(--accent-dim); display: grid; place-items: center; color: var(--accent); font-family: var(--mono); font-size: 0.7rem; font-weight: 700; background: var(--accent-glow); flex: none; }
-.cert .info h3 { margin: 0; font-size: 1rem; }
-.cert .info p { margin: 3px 0 0; font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); }
-.cert .meta { text-align: right; font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft); white-space: nowrap; }
-.cert .meta .verified { color: var(--accent); display: inline-flex; align-items: center; gap: 5px; }
-@media (max-width: 620px){
-  .cert { grid-template-columns: auto 1fr; }
-  .cert .meta { grid-column: 2; text-align: left; margin-top: 6px; }
-}
-
-/* ---------- Education ---------- */
-.edu-line { position: relative; padding-left: 28px; }
-.edu-line::before { content:""; position:absolute; left:6px; top:6px; bottom:6px; width:1px; background: var(--line); }
-.edu-item { position: relative; padding: 0 0 26px; }
-.edu-item:last-child { padding-bottom: 0; }
-.edu-item::before { content:""; position:absolute; left:-25px; top:5px; width:11px; height:11px; border-radius:50%; background: var(--bg); border: 2px solid var(--accent-dim); }
-.edu-item.now::before { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
-.edu-item h3 { margin: 0; font-size: 1.05rem; }
-.edu-item .org { color: var(--ink-soft); font-size: 0.92rem; margin-top: 2px; }
-.edu-item .when { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-faint); margin-top: 4px; }
-
-/* ---------- Contact ---------- */
-.contact-card {
-  border: 1px solid var(--surface-line); border-radius: 16px; background: var(--surface);
-  padding: clamp(28px, 6vw, 44px); text-align: center; box-shadow: var(--shadow);
-  background-image: radial-gradient(ellipse 60% 90% at 50% 0%, var(--accent-glow), transparent 70%);
-}
-.contact-card h2 { font-size: clamp(1.7rem, 6vw, 2.8rem); margin: 0 0 12px; letter-spacing: -0.02em; text-wrap: balance; }
-.contact-card p { color: var(--ink-soft); max-width: 52ch; margin: 0 auto 28px; }
-.contact-links { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
-.contact-links .btn { max-width: 100%; overflow-wrap: anywhere; }
-
-/* ---------- Footer / misc ---------- */
-footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
-.foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); }
-.foot-inner a:hover { color: var(--accent); }
-
-#toTop {
-  position: fixed; right: 20px; bottom: 20px; z-index: 40;
-  width: 44px; height: 44px; border-radius: 10px;
-  border: 1px solid var(--line); background: var(--surface); color: var(--accent);
-  font-family: var(--mono); font-size: 1rem; cursor: pointer;
-  opacity: 0; pointer-events: none; transform: translateY(8px);
-  transition: opacity .25s, transform .25s, border-color .18s;
-}
-#toTop.show { opacity: 1; pointer-events: auto; transform: none; }
-#toTop:hover { border-color: var(--accent-dim); }
-
-/* ---------- reveal ---------- */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; transition-delay: var(--d, 0s); }
-.reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce){ .reveal { opacity: 1; transform: none; transition: none; } }
-
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-</style>
+<link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 <div id="progress" aria-hidden="true"></div>
@@ -422,17 +44,17 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
     <div class="term" id="termBox">
       <div class="term-bar">
         <span class="tb r"></span><span class="tb y"></span><span class="tb g"></span>
-        <span class="path">recon — shayaam@sec — -zsh</span>
-        <span class="hint">interactive — try `help`</span>
+        <span class="path">recon - shayaam@sec - -zsh</span>
+        <span class="hint">interactive - try `help`</span>
       </div>
       <div class="term-body" id="term" aria-live="polite"></div>
     </div>
 
     <div class="hero-id">
-      <span class="eyebrow" style="margin-bottom:6px;">Malé, Maldives · Open to internships</span>
+      <span class="eyebrow" style="margin-bottom:6px;">Malé, Maldives · Open to work</span>
       <h1><span class="glitch">Shayaam</span> <span class="accent glitch">Shaheem</span></h1>
       <div class="hero-role"><span id="role"></span><span class="cursor" aria-hidden="true"></span></div>
-      <p class="hero-blurb">Computer Science student focused on <strong style="color:var(--ink)">network security</strong>. CCNA-certified, comfortable in Linux and the terminal, and I build practical security tooling in Python and Java — from a multithreaded port scanner to a facial-recognition pipeline.</p>
+      <p class="hero-blurb">Computer Science graduate focused on <strong style="color:var(--ink)">network security</strong>. CCNA-certified, comfortable in Linux and the terminal, and I build practical security tooling in Python and Java - from a multithreaded port scanner to a facial-recognition pipeline.</p>
       <div class="hero-cta">
         <a class="btn primary magnetic" href="#projects">▸ view projects</a>
         <a class="btn ghost magnetic" href="https://github.com/LostSSSS" target="_blank" rel="noopener">↗ github.com/LostSSSS</a>
@@ -441,7 +63,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
         <div class="stat"><span class="n" data-count="6">0</span><span class="l">shipped projects</span></div>
         <div class="stat"><span class="n">CCNAv7</span><span class="l">cisco certified</span></div>
         <div class="stat"><span class="n" data-count="3" data-suffix="+">0</span><span class="l">languages</span></div>
-        <div class="stat"><span class="n" data-count="2023" data-from="1990">1990</span><span class="l">bsc · in progress</span></div>
+        <div class="stat"><span class="n" data-count="2026" data-from="1990">1990</span><span class="l">bsc · graduated</span></div>
       </div>
     </div>
   </div>
@@ -451,20 +73,20 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
 <section class="block" id="about">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">01 — whoami</span>
+      <span class="eyebrow">01 - whoami</span>
       <h2>Security-minded, from the packet up.</h2>
     </div>
     <div class="about-grid">
       <div class="reveal">
-        <p>I'm a Computer Science undergraduate at <strong>Maldives National University</strong> with a strong pull toward networking and cybersecurity. My CCNA training gave me a solid grounding in how traffic actually moves — routing, switching, subnetting, and troubleshooting — and I like working close to that layer.</p>
+        <p>I'm a Computer Science graduate of <strong>Maldives National University</strong> with a strong pull toward networking and cybersecurity. My CCNA training gave me a solid grounding in how traffic actually moves - routing, switching, subnetting, and troubleshooting - and I like working close to that layer.</p>
         <p>Most of what I build is hands-on: a <strong>TCP port scanner</strong> that fingerprints services, a <strong>facial-recognition system</strong> using OpenCV and dlib, and several Java simulations exploring queues, data structures, and game logic. I'm just as happy configuring a lab in Cisco Packet Tracer or a VM in VMware as I am writing code.</p>
-        <p>I'm looking for a first role or internship in <strong>cybersecurity, networking, or software development</strong> where I can keep learning and contribute to real, practical work.</p>
+        <p>I'm looking for a first role in <strong>cybersecurity, networking, or software development</strong> where I can keep learning and contribute to real, practical work.</p>
       </div>
       <aside class="id-card reveal" aria-label="Profile summary">
         <div class="id-head">// profile.json</div>
         <div class="id-rows">
           <div class="id-row"><span class="k">status</span><span class="v"><span class="live">● available</span></span></div>
-          <div class="id-row"><span class="k">role</span><span class="v">CS Student</span></div>
+          <div class="id-row"><span class="k">role</span><span class="v">CS Graduate</span></div>
           <div class="id-row"><span class="k">focus</span><span class="v">Cyber / Networking</span></div>
           <div class="id-row"><span class="k">location</span><span class="v">Maldives</span></div>
           <div class="id-row"><span class="k">env</span><span class="v">Linux · Kali · VMware</span></div>
@@ -479,7 +101,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
 <section class="block" id="skills">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">02 — capabilities</span>
+      <span class="eyebrow">02 - capabilities</span>
       <h2>Toolkit &amp; capability matrix</h2>
       <p>The stack I reach for across security labs, coursework, and projects.</p>
     </div>
@@ -530,9 +152,9 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
 <section class="block" id="projects">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">03 — projects</span>
+      <span class="eyebrow">03 - projects</span>
       <h2>Things I've built</h2>
-      <p>Pulled straight from my GitHub — security tooling, systems simulations, and web builds.</p>
+      <p>Pulled straight from my GitHub - security tooling, systems simulations, and web builds.</p>
     </div>
     <div class="proj-grid">
 
@@ -543,7 +165,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
         </div>
         <div class="proj-body">
           <h3>NIDS with Explainable AI</h3>
-          <p>My Final Year Project: a machine-learning Network Intrusion Detection System that classifies network flows as benign or malicious with a Random Forest, then explains every decision in plain English using SHAP and LIME. A second model names the attack type — port scan, DoS, brute force — and a React + FastAPI dashboard streams live alerts and their explanations over WebSockets.</p>
+          <p>My Final Year Project: a machine-learning Network Intrusion Detection System that classifies network flows as benign or malicious with a Random Forest, then explains every decision in plain English using SHAP and LIME. A second model names the attack type - port scan, DoS, brute force - and a React + FastAPI dashboard streams live alerts and their explanations over WebSockets.</p>
           <div class="proj-stack"><span>scikit-learn</span><span>SHAP</span><span>LIME</span><span>FastAPI</span><span>React</span><span>CIC-IDS2017/2018</span></div>
           <div class="proj-links"><a href="https://github.com/LostSSSS/FYP" target="_blank" rel="noopener">source ↗</a></div>
         </div>
@@ -569,7 +191,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
         </div>
         <div class="proj-body">
           <h3>Facial Recognition System</h3>
-          <p>An end-to-end pipeline that detects faces, extracts 68-point landmarks, computes 128-dimensional embeddings with dlib's ResNet model, and classifies identities with an SVM — plus a Tkinter tool for live rating.</p>
+          <p>An end-to-end pipeline that detects faces, extracts 68-point landmarks, computes 128-dimensional embeddings with dlib's ResNet model, and classifies identities with an SVM - plus a Tkinter tool for live rating.</p>
           <div class="proj-stack"><span>OpenCV</span><span>dlib</span><span>scikit-learn</span><span>NumPy</span></div>
           <div class="proj-links"><a href="https://github.com/LostSSSS/Facial_recognition_project" target="_blank" rel="noopener">source ↗</a></div>
         </div>
@@ -582,7 +204,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
         </div>
         <div class="proj-body">
           <h3>Supermarket Simulation</h3>
-          <p>A discrete simulation of a supermarket: multiple checkout queues, VIP customer prioritization, randomized arrivals, and live inventory management — modelled with custom queue structures and built with Maven.</p>
+          <p>A discrete simulation of a supermarket: multiple checkout queues, VIP customer prioritization, randomized arrivals, and live inventory management - modelled with custom queue structures and built with Maven.</p>
           <div class="proj-stack"><span>Java</span><span>queues</span><span>Maven</span><span>OOP</span></div>
           <div class="proj-links"><a href="https://github.com/LostSSSS/SupermarketSimulation" target="_blank" rel="noopener">source ↗</a></div>
         </div>
@@ -595,7 +217,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
         </div>
         <div class="proj-body">
           <h3>Crossword Puzzle</h3>
-          <p>A CLI crossword game on a 15×20 grid that hides words behind hint clues, tracks player guesses, and reveals the board as it fills — an exercise in 2D-array manipulation and game-state logic.</p>
+          <p>A CLI crossword game on a 15×20 grid that hides words behind hint clues, tracks player guesses, and reveals the board as it fills - an exercise in 2D-array manipulation and game-state logic.</p>
           <div class="proj-stack"><span>Java</span><span>2D arrays</span><span>CLI</span></div>
           <div class="proj-links"><a href="https://github.com/LostSSSS/CrosswordPuzzle" target="_blank" rel="noopener">source ↗</a></div>
         </div>
@@ -608,7 +230,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
         </div>
         <div class="proj-body">
           <h3>Login &amp; Portfolio System</h3>
-          <p>A full authentication flow with registration, login, sessions, and a protected dashboard — backed by MySQL, with input escaping and a clean front end.</p>
+          <p>A full authentication flow with registration, login, sessions, and a protected dashboard - backed by MySQL, with input escaping and a clean front end.</p>
           <div class="proj-stack"><span>PHP</span><span>MySQL</span><span>sessions</span></div>
           <div class="proj-links"><a href="https://github.com/LostSSSS/Login-page-with-a-portfolio" target="_blank" rel="noopener">source ↗</a></div>
         </div>
@@ -622,7 +244,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
 <section class="block" id="certs">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">04 — credentials</span>
+      <span class="eyebrow">04 - credentials</span>
       <h2>Certifications</h2>
       <p>Verified qualifications from Cisco, Cambridge, and Pearson Edexcel.</p>
     </div>
@@ -631,14 +253,14 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
         <div class="seal">CCNA</div>
         <div class="info">
           <h3>CCNAv7: Introduction to Networks</h3>
-          <p>Cisco Networking Academy · Maldives National University — Faculty of Engineering</p>
+          <p>Cisco Networking Academy · Maldives National University - Faculty of Engineering</p>
         </div>
         <div class="meta"><span class="verified">✓ verified</span><br>Jan 2024</div>
       </div>
       <div class="cert reveal">
         <div class="seal">A/L</div>
         <div class="info">
-          <h3>International Advanced Level — Biology &amp; Mathematics</h3>
+          <h3>International Advanced Level - Biology &amp; Mathematics</h3>
           <p>Pearson Edexcel · Centre for Higher Secondary Education</p>
         </div>
         <div class="meta"><span class="verified">✓ verified</span><br>Oct 2022</div>
@@ -646,7 +268,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
       <div class="cert reveal">
         <div class="seal">GCE</div>
         <div class="info">
-          <h3>GCE O-Level — Chemistry, Biology, Physics, Travel &amp; Tourism</h3>
+          <h3>GCE O-Level - Chemistry, Biology, Physics, Travel &amp; Tourism</h3>
           <p>Cambridge Assessment International Education</p>
         </div>
         <div class="meta"><span class="verified">✓ verified</span><br>Nov 2019</div>
@@ -654,7 +276,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
       <div class="cert reveal">
         <div class="seal">IG</div>
         <div class="info">
-          <h3>IGCSE — English (Second Language) &amp; Mathematics</h3>
+          <h3>IGCSE - English (Second Language) &amp; Mathematics</h3>
           <p>Cambridge Assessment International Education</p>
         </div>
         <div class="meta"><span class="verified">✓ verified</span><br>Nov 2019</div>
@@ -665,7 +287,7 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
           <h3>Higher Secondary &amp; Secondary School Certificates</h3>
           <p>Department of Public Examinations · Republic of Maldives</p>
         </div>
-        <div class="meta"><span class="verified">✓ verified</span><br>2019 – 2022</div>
+        <div class="meta"><span class="verified">✓ verified</span><br>2019 - 2022</div>
       </div>
     </div>
   </div>
@@ -675,14 +297,14 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
 <section class="block" id="education">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">05 — education</span>
+      <span class="eyebrow">05 - education</span>
       <h2>Academic track</h2>
     </div>
     <div class="edu-line reveal">
       <div class="edu-item now">
-        <h3>BSc Computer Science <span style="color:var(--accent);font-family:var(--mono);font-size:.7em;">// in progress</span></h3>
+        <h3>BSc Computer Science <span style="color:var(--accent);font-family:var(--mono);font-size:.7em;">// graduated</span></h3>
         <div class="org">Maldives National University</div>
-        <div class="when">2023 — Present</div>
+        <div class="when">2023 - 2026</div>
       </div>
       <div class="edu-item">
         <h3>GCE Advanced Level (A/L)</h3>
@@ -702,9 +324,9 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
 <section class="block" id="contact">
   <div class="wrap">
     <div class="contact-card reveal">
-      <span class="eyebrow" style="justify-content:center;">06 — establish connection</span>
+      <span class="eyebrow" style="justify-content:center;">06 - establish connection</span>
       <h2>Let's build something secure.</h2>
-      <p>I'm open to internships and entry-level roles in cybersecurity, networking, and software development. The fastest way to reach me is email.</p>
+      <p>I'm open to entry-level roles in cybersecurity, networking, and software development. The fastest way to reach me is email.</p>
       <div class="contact-links">
         <a class="btn primary magnetic" href="mailto:shayaamshaheem24@gmail.com">✉ shayaamshaheem24@gmail.com</a>
         <button class="btn ghost magnetic" id="copyEmail" type="button">⧉ copy email</button>
@@ -717,460 +339,13 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; margin-top: 40px; }
 
 <footer>
   <div class="wrap foot-inner">
-    <span>© <span id="year"></span> Shayaam Shaheem — built from the packet up.</span>
+    <span>© <span id="year"></span> Shayaam Shaheem - built from the packet up.</span>
     <span><a href="https://github.com/LostSSSS" target="_blank" rel="noopener">github.com/LostSSSS</a></span>
   </div>
 </footer>
 
 <button id="toTop" aria-label="Back to top">↑</button>
 
-<script>
-(function () {
-  "use strict";
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  var root = document.documentElement;
-
-  /* ---------- theme ---------- */
-  var btn = document.getElementById("themeBtn");
-  var icon = document.getElementById("themeIcon");
-  var label = document.getElementById("themeLabel");
-  function applyTheme(t) {
-    root.setAttribute("data-theme", t);
-    icon.textContent = t === "dark" ? "◐" : "◑";
-    label.textContent = t;
-    try { localStorage.setItem("theme", t); } catch (e) {}
-  }
-  var saved = null;
-  try { saved = localStorage.getItem("theme"); } catch (e) {}
-  var qp = new URLSearchParams(location.search).get("theme");
-  applyTheme((qp === "dark" || qp === "light") ? qp
-    : (saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark")));
-  btn.addEventListener("click", function () {
-    applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
-  });
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  /* ---------- mobile nav ---------- */
-  var burger = document.getElementById("navBurger");
-  var navLinks = document.getElementById("navLinks");
-  burger.addEventListener("click", function () {
-    var open = navLinks.classList.toggle("open");
-    burger.setAttribute("aria-expanded", open);
-    burger.textContent = open ? "✕" : "☰";
-  });
-  navLinks.addEventListener("click", function (e) {
-    if (e.target.tagName === "A") {
-      navLinks.classList.remove("open");
-      burger.setAttribute("aria-expanded", "false");
-      burger.textContent = "☰";
-    }
-  });
-
-  /* ---------- scroll progress + back-to-top ---------- */
-  var progress = document.getElementById("progress");
-  var toTop = document.getElementById("toTop");
-  var ticking = false;
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      var max = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
-      toTop.classList.toggle("show", window.scrollY > 600);
-      ticking = false;
-    });
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-  toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); });
-
-  /* ---------- scrollspy ---------- */
-  var sections = ["about", "skills", "projects", "certs", "education", "contact"];
-  var navMap = {};
-  navLinks.querySelectorAll("a").forEach(function (a) { navMap[a.getAttribute("href").slice(1)] = a; });
-  var spy = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        Object.keys(navMap).forEach(function (k) { navMap[k].classList.remove("active"); });
-        if (navMap[e.target.id]) navMap[e.target.id].classList.add("active");
-      }
-    });
-  }, { rootMargin: "-40% 0px -55% 0px" });
-  sections.forEach(function (id) { var el = document.getElementById(id); if (el) spy.observe(el); });
-
-  /* ---------- staggered reveal ---------- */
-  var io = new IntersectionObserver(function (entries) {
-    var batch = 0;
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        e.target.style.setProperty("--d", (batch++ * 0.08) + "s");
-        e.target.classList.add("in");
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-
-  /* ---------- animated counters ---------- */
-  function animateCount(el) {
-    var to = parseInt(el.getAttribute("data-count"), 10);
-    var from = parseInt(el.getAttribute("data-from") || "0", 10);
-    var suffix = el.getAttribute("data-suffix") || "";
-    if (reduce) { el.textContent = to + suffix; return; }
-    var t0 = null, dur = 1200;
-    function frame(ts) {
-      if (!t0) t0 = ts;
-      var p = Math.min((ts - t0) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(from + (to - from) * eased) + (p === 1 ? suffix : "");
-      if (p < 1) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  }
-  var cio = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { animateCount(e.target); cio.unobserve(e.target); }
-    });
-  }, { threshold: 0.6 });
-  document.querySelectorAll("[data-count]").forEach(function (el) { cio.observe(el); });
-
-  /* ---------- magnetic buttons ---------- */
-  if (finePointer && !reduce) {
-    document.querySelectorAll(".magnetic").forEach(function (el) {
-      el.addEventListener("pointermove", function (e) {
-        var r = el.getBoundingClientRect();
-        var dx = (e.clientX - r.left - r.width / 2) / r.width;
-        var dy = (e.clientY - r.top - r.height / 2) / r.height;
-        el.style.transform = "translate(" + (dx * 6) + "px," + (dy * 6) + "px)";
-      });
-      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
-    });
-  }
-
-  /* ---------- 3D tilt + glow-follow on project cards ---------- */
-  if (finePointer && !reduce) {
-    document.querySelectorAll(".proj").forEach(function (card) {
-      card.addEventListener("pointermove", function (e) {
-        var r = card.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width;
-        var py = (e.clientY - r.top) / r.height;
-        card.style.setProperty("--mx", (px * 100) + "%");
-        card.style.setProperty("--my", (py * 100) + "%");
-        card.style.transform = "rotateX(" + ((0.5 - py) * 5) + "deg) rotateY(" + ((px - 0.5) * 5) + "deg) translateY(-2px)";
-      });
-      card.addEventListener("pointerleave", function () { card.style.transform = ""; });
-    });
-  } else {
-    // still track glow position for touch taps
-    document.querySelectorAll(".proj").forEach(function (card) {
-      card.addEventListener("pointerdown", function (e) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100) + "%");
-        card.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100) + "%");
-      });
-    });
-  }
-
-  /* ---------- cursor glow ---------- */
-  var glow = document.getElementById("cursor-glow");
-  if (finePointer && !reduce) {
-    var gx = 0, gy = 0, tx = 0, ty = 0, glowOn = false;
-    window.addEventListener("pointermove", function (e) {
-      tx = e.clientX; ty = e.clientY;
-      if (!glowOn) { glowOn = true; glow.style.opacity = "0.7"; glowLoop(); }
-    }, { passive: true });
-    function glowLoop() {
-      gx += (tx - gx) * 0.12; gy += (ty - gy) * 0.12;
-      glow.style.left = gx + "px"; glow.style.top = gy + "px";
-      requestAnimationFrame(glowLoop);
-    }
-  }
-
-  /* ---------- copy email ---------- */
-  var copyBtn = document.getElementById("copyEmail");
-  copyBtn.addEventListener("click", function () {
-    var email = "shayaamshaheem24@gmail.com";
-    function done(ok) {
-      copyBtn.textContent = ok ? "✓ copied" : "✗ copy failed";
-      setTimeout(function () { copyBtn.textContent = "⧉ copy email"; }, 1800);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(email).then(function () { done(true); }, function () { done(false); });
-    } else {
-      var ta = document.createElement("textarea");
-      ta.value = email; document.body.appendChild(ta); ta.select();
-      var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
-      document.body.removeChild(ta); done(ok);
-    }
-  });
-
-  /* ============================================================
-     INTERACTIVE TERMINAL
-     Boot sequence types itself, then hands over a live prompt.
-     ============================================================ */
-  var termEl = document.getElementById("term");
-  var termBox = document.getElementById("termBox");
-  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-
-  var bootLines = [
-    { t: "$ whoami", cls: "prompt" },
-    { t: "shayaam.shaheem — computer science student", cls: "term-out" },
-    { t: "$ nmap -sV --identity ./shayaam", cls: "prompt" },
-    { t: "Starting recon on target profile ...", cls: "line" },
-    { t: "PORT     STATE  SERVICE", cls: "line" },
-    { t: "22/cyber open   network-security  [CCNAv7]", cls: "ok" },
-    { t: "80/dev   open   software-eng      [python·java]", cls: "ok" },
-    { t: "443/lab  open   linux·vmware·kali", cls: "ok" },
-    { t: "$ cat ./mission.txt", cls: "prompt" },
-    { t: "> breaking into cybersecurity, one packet at a time.", cls: "flag" },
-    { t: "type `help` for available commands", cls: "line" }
-  ];
-
-  function addLine(text, cls, isHTML) {
-    var p = document.createElement("p");
-    p.className = "line " + (cls === "prompt" ? "" : (cls || ""));
-    if (isHTML) { p.innerHTML = text; }
-    else { p.innerHTML = cls === "prompt" ? '<span class="prompt">' + esc(text) + "</span>" : esc(text); }
-    if (inputLine && inputLine.parentNode === termEl) termEl.insertBefore(p, inputLine);
-    else termEl.appendChild(p);
-    return p;
-  }
-
-  var inputLine = null, termInput = null;
-  function mountPrompt() {
-    inputLine = document.createElement("div");
-    inputLine.className = "term-input-line";
-    inputLine.innerHTML = '<span class="ps1">shayaam@sec:~$</span>';
-    termInput = document.createElement("input");
-    termInput.id = "term-input";
-    termInput.setAttribute("aria-label", "Terminal command input");
-    termInput.setAttribute("autocomplete", "off");
-    termInput.setAttribute("autocapitalize", "off");
-    termInput.setAttribute("spellcheck", "false");
-    inputLine.appendChild(termInput);
-    termEl.appendChild(inputLine);
-    termBox.addEventListener("click", function () { termInput.focus({ preventScroll: true }); });
-    var history = [], hIdx = -1;
-    termInput.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        var cmd = termInput.value.trim();
-        addLine('<span class="prompt">shayaam@sec:~$</span> <span class="term-out">' + esc(termInput.value) + "</span>", "", true);
-        if (cmd) { history.unshift(cmd); runCmd(cmd); }
-        hIdx = -1;
-        termInput.value = "";
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        if (hIdx < history.length - 1) { hIdx++; termInput.value = history[hIdx]; }
-      } else if (e.key === "ArrowDown") {
-        e.preventDefault();
-        if (hIdx > 0) { hIdx--; termInput.value = history[hIdx]; }
-        else { hIdx = -1; termInput.value = ""; }
-      }
-    });
-  }
-
-  var commands = {
-    help: function () {
-      addLine("available commands:", "line");
-      addLine("  whoami      — who is this guy", "term-out");
-      addLine("  skills      — capability matrix", "term-out");
-      addLine("  projects    — things I've built", "term-out");
-      addLine("  certs       — verified credentials", "term-out");
-      addLine("  contact     — establish connection", "term-out");
-      addLine("  nmap        — re-run the recon scan", "term-out");
-      addLine("  theme       — toggle dark/light", "term-out");
-      addLine("  clear       — clear the terminal", "term-out");
-    },
-    whoami: function () {
-      addLine("shayaam.shaheem — CS undergrad @ Maldives National University", "term-out");
-      addLine("focus: cybersecurity · networking · CCNA-certified", "ok");
-    },
-    skills: function () {
-      addLine("net/sec : CCNAv7, routing & switching, subnetting, packet tracer", "term-out");
-      addLine("code    : python, java, c++, sql, r, php, html/css", "term-out");
-      addLine("systems : linux (ubuntu/kali), windows, vmware, git", "term-out");
-      addLine("embedded: arduino, sensors, microcontrollers", "term-out");
-    },
-    projects: function () {
-      addLine('[1] nids-xai — ML intrusion detection + SHAP/LIME explanations (FYP)  <a href="https://github.com/LostSSSS/FYP" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[2] port-scanner — multithreaded TCP scanner + banner grabbing  <a href="https://github.com/LostSSSS/Port-Scanner" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[3] facial-recognition — opencv + dlib + svm pipeline  <a href="https://github.com/LostSSSS/Facial_recognition_project" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[4] supermarket-sim — java queue simulation  <a href="https://github.com/LostSSSS/SupermarketSimulation" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[5] crossword — java CLI puzzle game  <a href="https://github.com/LostSSSS/CrosswordPuzzle" target="_blank" rel="noopener">src</a>', "term-out", true);
-      addLine('[6] login-system — php + mysql auth  <a href="https://github.com/LostSSSS/Login-page-with-a-portfolio" target="_blank" rel="noopener">src</a>', "term-out", true);
-    },
-    certs: function () {
-      addLine("✓ CCNAv7: Introduction to Networks — Cisco (2024)", "ok");
-      addLine("✓ Edexcel International A-Level — Bio & Math (2022)", "ok");
-      addLine("✓ Cambridge O-Level & IGCSE (2019)", "ok");
-      addLine("✓ Maldives HSC & SSC (2019–2022)", "ok");
-    },
-    contact: function () {
-      addLine('email : <a href="mailto:shayaamshaheem24@gmail.com">shayaamshaheem24@gmail.com</a>', "term-out", true);
-      addLine('github: <a href="https://github.com/LostSSSS" target="_blank" rel="noopener">github.com/LostSSSS</a>', "term-out", true);
-      addLine("status: ● open to internships", "ok");
-    },
-    nmap: function () { rerunScan(); },
-    theme: function () {
-      applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
-      addLine("theme → " + root.getAttribute("data-theme"), "ok");
-    },
-    clear: function () {
-      termEl.querySelectorAll(".line").forEach(function (n) { n.remove(); });
-    },
-    ls: function () { addLine("about/  capabilities/  projects/  certs/  education/  contact/", "term-out"); },
-    sudo: function () { addLine("nice try. permission denied — this box is hardened. ☺", "err"); },
-    exit: function () { addLine("there is no escape. try `projects` instead.", "flag"); }
-  };
-  function runCmd(raw) {
-    var parts = raw.split(/\s+/);
-    var name = parts[0].toLowerCase();
-    if (commands[name]) { commands[name](parts.slice(1)); }
-    else if (name === "cd") { addLine("this shell only goes deeper. try `ls`.", "flag"); }
-    else { addLine("command not found: " + name + " — try `help`", "err"); }
-    termEl.scrollTop = termEl.scrollHeight;
-  }
-  function rerunScan() {
-    var scan = bootLines.slice(3, 8);
-    var i = 0;
-    (function next() {
-      if (i >= scan.length) return;
-      addLine(scan[i].t, scan[i].cls);
-      i++;
-      if (reduce) next(); else setTimeout(next, 160);
-    })();
-  }
-
-  function bootInstant() {
-    bootLines.forEach(function (l) { addLine(l.t, l.cls); });
-    mountPrompt();
-  }
-  if (reduce) {
-    bootInstant();
-  } else {
-    var li = 0, ci = 0, cur = null;
-    (function type() {
-      if (li >= bootLines.length) { mountPrompt(); return; }
-      var l = bootLines[li];
-      if (ci === 0) {
-        cur = document.createElement("p");
-        cur.className = "line " + (l.cls === "prompt" ? "" : l.cls);
-        termEl.appendChild(cur);
-      }
-      if (ci <= l.t.length) {
-        var txt = l.t.slice(0, ci);
-        cur.innerHTML = l.cls === "prompt" ? '<span class="prompt">' + esc(txt) + "</span>" : esc(txt);
-        ci++;
-        setTimeout(type, l.cls === "prompt" ? 30 : 10);
-      } else {
-        li++; ci = 0;
-        setTimeout(type, 220);
-      }
-    })();
-  }
-
-  /* ---------- role rotator ---------- */
-  var roleEl = document.getElementById("role");
-  var roles = [
-    "aspiring cybersecurity specialist",
-    "network engineer in training",
-    "security-minded developer",
-    "CCNA-certified · Linux native"
-  ];
-  var ri = 0, rc = 0, deleting = false;
-  function roleStep() {
-    var word = roles[ri];
-    if (!deleting) {
-      rc++;
-      if (rc > word.length) { deleting = true; setTimeout(roleStep, 1600); return; }
-    } else {
-      rc--;
-      if (rc === 0) { deleting = false; ri = (ri + 1) % roles.length; }
-    }
-    roleEl.textContent = word.slice(0, rc);
-    setTimeout(roleStep, deleting ? 34 : 62);
-  }
-  if (reduce) { roleEl.textContent = roles[0]; } else { setTimeout(roleStep, 2400); }
-
-  /* ---------- background node network (parallax-aware) ---------- */
-  var canvas = document.getElementById("bg-canvas");
-  var ctx = canvas.getContext("2d");
-  var W, H, nodes, raf, dpr;
-  function accentColor() {
-    return getComputedStyle(root).getPropertyValue("--accent").trim() || "#43e0c4";
-  }
-  function hexToRgb(h) {
-    h = h.replace("#", "");
-    if (h.length === 3) h = h.split("").map(function (c) { return c + c; }).join("");
-    var n = parseInt(h, 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  }
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = canvas.width = Math.floor(window.innerWidth * dpr);
-    H = canvas.height = Math.floor(window.innerHeight * dpr);
-    canvas.style.width = window.innerWidth + "px";
-    canvas.style.height = window.innerHeight + "px";
-    var count = Math.min(64, Math.floor(window.innerWidth / 22));
-    nodes = [];
-    for (var i = 0; i < count; i++) {
-      nodes.push({
-        x: Math.random() * W, y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.28 * dpr,
-        vy: (Math.random() - 0.5) * 0.28 * dpr,
-        r: (Math.random() * 1.4 + 0.6) * dpr
-      });
-    }
-  }
-  var pointer = { x: -9999, y: -9999 };
-  if (finePointer) {
-    window.addEventListener("pointermove", function (e) {
-      pointer.x = e.clientX * (dpr || 1); pointer.y = e.clientY * (dpr || 1);
-    }, { passive: true });
-  }
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    var rgb = hexToRgb(accentColor());
-    var link = 130 * dpr;
-    for (var i = 0; i < nodes.length; i++) {
-      var a = nodes[i];
-      a.x += a.vx; a.y += a.vy;
-      // gentle attraction toward the pointer
-      var pdx = pointer.x - a.x, pdy = pointer.y - a.y;
-      var pd = Math.sqrt(pdx * pdx + pdy * pdy);
-      if (pd < 220 * dpr && pd > 1) { a.x += pdx / pd * 0.18 * dpr; a.y += pdy / pd * 0.18 * dpr; }
-      if (a.x < 0 || a.x > W) a.vx *= -1;
-      if (a.y < 0 || a.y > H) a.vy *= -1;
-      for (var j = i + 1; j < nodes.length; j++) {
-        var b = nodes[j];
-        var dx = a.x - b.x, dy = a.y - b.y;
-        var d = Math.sqrt(dx * dx + dy * dy);
-        if (d < link) {
-          ctx.strokeStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + (0.14 * (1 - d / link)) + ")";
-          ctx.lineWidth = dpr * 0.6;
-          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-        }
-      }
-      ctx.fillStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0.55)";
-      ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
-    }
-    raf = requestAnimationFrame(draw);
-  }
-  if (!reduce) {
-    resize(); draw();
-    var rt;
-    window.addEventListener("resize", function () {
-      clearTimeout(rt); rt = setTimeout(function () { cancelAnimationFrame(raf); resize(); draw(); }, 200);
-    });
-  } else {
-    resize();
-    var rgb = hexToRgb(accentColor());
-    ctx.fillStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0.4)";
-    nodes.forEach(function (n) { ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2); ctx.fill(); });
-  }
-})();
-</script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
