@@ -276,6 +276,7 @@
     },
     certs: function () {
       addLine("✓ CCNAv7: Introduction to Networks - Cisco (2024)", "ok");
+      addLine("✓ CCNAv7: Switching, Routing & Wireless Essentials - Cisco (2024)", "ok");
       addLine("✓ Edexcel International A-Level - Bio & Math (2022)", "ok");
       addLine("✓ Cambridge O-Level & IGCSE (2019)", "ok");
       addLine("✓ Maldives HSC & SSC (2019-2022)", "ok");
