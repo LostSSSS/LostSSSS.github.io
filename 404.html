@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 - Not Found · Shayaam Shaheem</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="/css/styles.css" />
+<script>
+  /* restore theme before paint to avoid a flash */
+  (function () {
+    var r = document.documentElement, s = null;
+    try { s = localStorage.getItem("theme"); } catch (e) {}
+    var qp = new URLSearchParams(location.search).get("theme");
+    r.setAttribute("data-theme",
+      (qp === "dark" || qp === "light") ? qp
+      : (s || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark")));
+  })();
+</script>
+<style>
+  .nf {
+    position: relative; z-index: 1;
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 48px 24px; gap: 4px;
+  }
+  .nf .eyebrow { justify-content: center; }
+
+  /* ---- glitching 404 ---- */
+  .glitch404 {
+    position: relative; display: inline-block;
+    font-family: var(--mono); font-weight: 800;
+    font-size: clamp(5rem, 26vw, 12rem); line-height: 0.9;
+    letter-spacing: -0.03em; color: var(--ink);
+    margin: 18px 0 6px; user-select: none;
+  }
+  .glitch404::before, .glitch404::after {
+    content: attr(data-text); position: absolute; inset: 0;
+    width: 100%; overflow: hidden; opacity: 0.85;
+  }
+  .glitch404::before { color: var(--accent); }
+  .glitch404::after  { color: var(--danger); }
+  @media (prefers-reduced-motion: no-preference) {
+    .glitch404::before { animation: gl-a 2.6s infinite steps(2) alternate-reverse; }
+    .glitch404::after  { animation: gl-b 3.4s infinite steps(2) alternate-reverse; }
+    @keyframes gl-a {
+      0%   { clip-path: inset(8% 0 78% 0);  transform: translate(-3px, 0); }
+      30%  { clip-path: inset(45% 0 34% 0); transform: translate(3px, -1px); }
+      60%  { clip-path: inset(70% 0 8% 0);  transform: translate(-2px, 1px); }
+      100% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+    }
+    @keyframes gl-b {
+      0%   { clip-path: inset(72% 0 8% 0);  transform: translate(3px, 1px); }
+      35%  { clip-path: inset(20% 0 58% 0); transform: translate(-3px, 0); }
+      70%  { clip-path: inset(50% 0 30% 0); transform: translate(2px, -1px); }
+      100% { clip-path: inset(5% 0 82% 0);  transform: translate(-2px, 1px); }
+    }
+  }
+
+  .nf .lead { color: var(--ink-soft); margin: 0 auto; max-width: 44ch; font-size: 1.02rem; }
+  .nf .quip {
+    font-family: var(--mono); font-size: 0.8rem; color: var(--accent);
+    margin: 14px 0 0; min-height: 1.2em; letter-spacing: 0.02em;
+  }
+  .nf .term { width: 100%; max-width: 560px; margin: 30px auto 0; text-align: left; }
+  .nf .term-body { min-height: 0; padding: 18px 18px 20px; max-height: 340px; overflow-y: auto; }
+  .nf .term-body .win { color: var(--accent); font-weight: 700; }
+  .nf .hero-cta { justify-content: center; margin-top: 30px; }
+</style>
+</head>
+<body>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div id="cursor-glow" aria-hidden="true"></div>
+
+<button class="theme-btn" id="themeBtn" aria-label="Toggle color theme"
+        style="position:fixed; top:16px; right:16px; z-index:5;">
+  <span id="themeIcon">◐</span><span id="themeLabel">theme</span>
+</button>
+
+<main class="nf">
+  <span class="eyebrow">error - signal lost</span>
+  <div class="glitch404" data-text="404" aria-label="404">404</div>
+  <p class="lead">This route dead-ends. The page you traced never resolved.</p>
+  <p class="quip" id="quip" aria-live="polite"></p>
+
+  <div class="term" id="termBox">
+    <div class="term-bar">
+      <span class="tb r"></span><span class="tb y"></span><span class="tb g"></span>
+      <span class="path">traceroute - shayaam@sec</span>
+      <span class="hint">status 404</span>
+    </div>
+    <div class="term-body" id="trace" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero-cta">
+    <a class="btn primary magnetic" href="/">▸ back to home</a>
+    <a class="btn ghost magnetic" href="https://github.com/LostSSSS" target="_blank" rel="noopener">↗ github.com/LostSSSS</a>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var root = document.documentElement;
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  /* ---- theme toggle (matches the main site) ---- */
+  var themeBtn = document.getElementById("themeBtn");
+  var themeIcon = document.getElementById("themeIcon");
+  var themeLabel = document.getElementById("themeLabel");
+  function applyTheme(t) {
+    root.setAttribute("data-theme", t);
+    themeIcon.textContent = t === "dark" ? "◐" : "◑";
+    themeLabel.textContent = t;
+    try { localStorage.setItem("theme", t); } catch (e) {}
+  }
+  applyTheme(root.getAttribute("data-theme") === "light" ? "light" : "dark");
+  themeBtn.addEventListener("click", function () {
+    applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
+
+  /* ---- requested path ---- */
+  var reqPath = (location.pathname || "/").replace(/[<>&"]/g, "");
+  if (reqPath.length > 34) reqPath = reqPath.slice(0, 34) + "…";
+
+  /* ---- one random quip per load ---- */
+  var quips = [
+    "// 404: packet dropped somewhere between here and there.",
+    "// nmap found the host. the host did not find this page.",
+    "// this endpoint is a honeypot for broken links.",
+    "// route to resource unreachable. firewall shrugs.",
+    "// you took a wrong turn at the last hop.",
+    "// segment not found. try the sitemap, not the void."
+  ];
+  document.getElementById("quip").textContent = quips[Math.floor(Math.random() * quips.length)];
+
+  /* ---- animated failing traceroute ---- */
+  var trace = document.getElementById("trace");
+  var hops = [
+    { h: '<span class="prompt">shayaam@sec:~$</span> <span class="term-out">traceroute ' + esc(reqPath) + '</span>', cls: "" },
+    { h: ' 1  gateway.shayaam.com (10.0.0.1)      1.204 ms', cls: "line" },
+    { h: ' 2  edge-router.pop (203.0.113.9)       4.771 ms', cls: "line" },
+    { h: ' 3  core-switch.mnu (198.51.100.4)      9.318 ms', cls: "line" },
+    { h: ' 4  * * *   request timed out', cls: "err" },
+    { h: ' !  destination unreachable: 404', cls: "err" },
+    { h: '> the trail goes cold here. head back to base.', cls: "flag" }
+  ];
+  function line(html, cls) {
+    var p = document.createElement("p");
+    p.className = "line " + (cls || "");
+    p.innerHTML = html;
+    if (gameInput && gameInput.parentNode === trace) trace.insertBefore(p, gameInput);
+    else trace.appendChild(p);
+    trace.scrollTop = trace.scrollHeight;
+    return p;
+  }
+  if (reduce) {
+    hops.forEach(function (x) { line(x.h, x.cls); });
+    mountGame();
+  } else {
+    var i = 0;
+    (function next() {
+      if (i >= hops.length) { mountGame(); return; }
+      line(hops[i].h, hops[i].cls);
+      i++;
+      setTimeout(next, i < 4 ? 380 : 620);
+    })();
+  }
+
+  /* ---- mini-game: find the open port (1-1024) ---- */
+  var gameInput = null, secret = 0, attempts = 0, solved = false;
+  function newRound() {
+    secret = Math.floor(Math.random() * 1024) + 1;
+    attempts = 0; solved = false;
+    line("> new scan armed. an open port hides in 1-1024. find it.", "flag");
+  }
+  function mountGame() {
+    line("&nbsp;", "line");
+    line("> bored? there's one open port in 1-1024. type a number to scan.", "flag");
+    line("&nbsp;&nbsp;(commands: <span class=\"prompt\">retry</span> new port · <span class=\"prompt\">reveal</span> give up · <span class=\"prompt\">home</span> leave)", "line");
+    secret = Math.floor(Math.random() * 1024) + 1;
+
+    var row = document.createElement("div");
+    row.className = "term-input-line";
+    row.innerHTML = '<span class="ps1">scan&gt;</span>';
+    gameInput = document.createElement("input");
+    gameInput.id = "term-input";
+    gameInput.type = "text";
+    gameInput.setAttribute("inputmode", "numeric");
+    gameInput.setAttribute("aria-label", "Guess a port number between 1 and 1024");
+    gameInput.setAttribute("autocomplete", "off");
+    gameInput.setAttribute("spellcheck", "false");
+    row.appendChild(gameInput);
+    trace.appendChild(row);
+
+    trace.addEventListener("click", function () { gameInput.focus({ preventScroll: true }); });
+    gameInput.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter") return;
+      var raw = gameInput.value.trim();
+      gameInput.value = "";
+      if (!raw) return;
+      line('<span class="prompt">scan&gt;</span> <span class="term-out">' + esc(raw) + "</span>", "");
+      var cmd = raw.toLowerCase();
+      if (cmd === "home") { window.location.href = "/"; return; }
+      if (cmd === "retry") { newRound(); return; }
+      if (cmd === "reveal") { line("port " + secret + " was the open one. try `retry`.", "err"); solved = true; return; }
+      var n = parseInt(raw, 10);
+      if (isNaN(n) || n < 1 || n > 1024) { line("not a valid port. pick 1-1024.", "err"); return; }
+      if (solved) { line("scan already closed. type `retry` for a new port.", "line"); return; }
+      attempts++;
+      if (n === secret) {
+        solved = true;
+        line("port " + n + ": OPEN ✓  access granted in " + attempts + (attempts === 1 ? " try" : " tries") + ". nice work.", "win");
+        line("type `retry` to scan again, or `home` to head back.", "line");
+      } else if (n < secret) {
+        line("port " + n + ": closed - scan higher ↑", "line");
+      } else {
+        line("port " + n + ": closed - scan lower ↓", "line");
+      }
+    });
+  }
+
+  /* ---- cursor glow (matches the main site) ---- */
+  var glow = document.getElementById("cursor-glow");
+  if (glow && finePointer && !reduce) {
+    var gx = 0, gy = 0, tx = 0, ty = 0, on = false;
+    window.addEventListener("pointermove", function (e) {
+      tx = e.clientX; ty = e.clientY;
+      if (!on) { on = true; glow.style.opacity = "0.7"; loop(); }
+    }, { passive: true });
+    function loop() {
+      gx += (tx - gx) * 0.12; gy += (ty - gy) * 0.12;
+      glow.style.left = gx + "px"; glow.style.top = gy + "px";
+      requestAnimationFrame(loop);
+    }
+  }
+
+  /* ---- magnetic buttons ---- */
+  if (finePointer && !reduce) {
+    document.querySelectorAll(".magnetic").forEach(function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.transform = "translate(" +
+          ((e.clientX - r.left - r.width / 2) / r.width * 6) + "px," +
+          ((e.clientY - r.top - r.height / 2) / r.height * 6) + "px)";
+      });
+      el.addEventListener("pointerleave", function () { el.style.transform = ""; });
+    });
+  }
+
+  /* ---- background node network (same as the main site, accent-themed) ---- */
+  var canvas = document.getElementById("bg-canvas");
+  var ctx = canvas.getContext("2d");
+  var W, H, nodes, raf, dpr;
+  function accentColor() {
+    return getComputedStyle(root).getPropertyValue("--accent").trim() || "#43e0c4";
+  }
+  function hexToRgb(h) {
+    h = h.replace("#", "");
+    if (h.length === 3) h = h.split("").map(function (c) { return c + c; }).join("");
+    var n = parseInt(h, 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.width = Math.floor(window.innerWidth * dpr);
+    H = canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+    var count = Math.min(64, Math.floor(window.innerWidth / 22));
+    nodes = [];
+    for (var i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.28 * dpr,
+        vy: (Math.random() - 0.5) * 0.28 * dpr,
+        r: (Math.random() * 1.4 + 0.6) * dpr
+      });
+    }
+  }
+  var pointer = { x: -9999, y: -9999 };
+  if (finePointer) {
+    window.addEventListener("pointermove", function (e) {
+      pointer.x = e.clientX * (dpr || 1); pointer.y = e.clientY * (dpr || 1);
+    }, { passive: true });
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var rgb = hexToRgb(accentColor());
+    var link = 130 * dpr;
+    for (var i = 0; i < nodes.length; i++) {
+      var a = nodes[i];
+      a.x += a.vx; a.y += a.vy;
+      var pdx = pointer.x - a.x, pdy = pointer.y - a.y;
+      var pd = Math.sqrt(pdx * pdx + pdy * pdy);
+      if (pd < 220 * dpr && pd > 1) { a.x += pdx / pd * 0.18 * dpr; a.y += pdy / pd * 0.18 * dpr; }
+      if (a.x < 0 || a.x > W) a.vx *= -1;
+      if (a.y < 0 || a.y > H) a.vy *= -1;
+      for (var j = i + 1; j < nodes.length; j++) {
+        var b = nodes[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < link) {
+          ctx.strokeStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + (0.14 * (1 - d / link)) + ")";
+          ctx.lineWidth = dpr * 0.6;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      ctx.fillStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0.55)";
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
+    }
+    raf = requestAnimationFrame(draw);
+  }
+  if (!reduce) {
+    resize(); draw();
+    var rt;
+    window.addEventListener("resize", function () {
+      clearTimeout(rt); rt = setTimeout(function () { cancelAnimationFrame(raf); resize(); draw(); }, 200);
+    });
+  } else {
+    resize();
+    var rgb = hexToRgb(accentColor());
+    ctx.fillStyle = "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ",0.4)";
+    nodes.forEach(function (n) { ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2); ctx.fill(); });
+  }
+})();
+</script>
+</body>
+</html>
